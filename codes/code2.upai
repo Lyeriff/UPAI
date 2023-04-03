@@ -1,0 +1,42 @@
+_func:
+    MOV R2,6
+    MOV RLEN,1005
+    MOV IDX,999
+    MOV RL1,IDX
+        ADD RL1,1
+        MOV RL2,#1000
+        
+        ADD RL2,1
+        MOV RLTP,[RL2]
+        ADD RLTP,[RL1]
+        CMP RLTP,RSUM
+        JUMP RLTP,(func2)
+
+
+        MOV RTEMP,RL1
+        SUB RTEMP,#1005
+        RPRINT RTEMP
+        JUMPINV RTEMP, #26
+
+        SUB RL2,1005
+        JUMPINV RL2,6
+        JUMP RL2,10
+    
+    RPRINT RE
+    END
+
+_func2:
+    MOVS R4,Hello World
+    RPRINT R4
+    RPRINT RE
+    RET
+
+_main:
+    ARR 1000,1, 2, 3, 4, 5, 6
+    MOV RSUM,11
+    MOVS RE,%endl%
+    MOVS R3,start:
+    RPRINT R3
+    RPRINT RE
+    CALL _func
+    END

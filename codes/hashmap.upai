@@ -1,0 +1,46 @@
+_hash:
+	MOV RT,HaIO
+	SHR HaIO,#16
+	XOR HaIO,RT
+	MUL HaIO,#73244475
+
+	MOV RT,HaIO
+	SHR HaIO,#16
+	XOR HaIO,RT
+	MUL HaIO,#73244475
+	
+	MOV RT,HaIO
+	SHR HaIO,#16
+	XOR HaIO,RT
+
+	RET
+
+_loop:
+	DEC SIZE
+
+	?? do stuff
+
+	CMP SIZE, #0
+	JUMPE ()
+
+_map_gen:
+	
+
+_main:
+	ARR 500, 7, 9, 20, 57
+	ARR 700, 17, 19, 120, 157
+
+
+	MOV ARR_inp_1, #500
+	MOV ARR_inp_2, #700
+
+	MOV HaIO,#100
+	MOV R2,#200
+
+	MOV SIZE, #4
+	
+
+	MOVS RE,%endl%
+	CALL _hash
+	RPRINT HaIO
+	END

@@ -1,0 +1,23 @@
+_func:
+    MOV R2,6
+    MOV IDX,1000
+    DEC R2
+    RPRINT [IDX]
+    ADD IDX,1
+    JUMP R2,3
+    RPRINT RE
+    CALL _func2
+    RET
+_func2:
+    MOVS R4,Hello World
+    RPRINT R4
+    RPRINT RE
+    RET
+_main:
+    ARR 1000,1, 2, 3, 4, 5, 6
+    MOVS RE,%endl%
+    MOVS R3,start:
+    RPRINT R3
+    RPRINT RE
+    CALL _func
+    END

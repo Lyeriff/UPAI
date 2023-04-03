@@ -1,0 +1,52 @@
+_outerloop:
+    CMP RLO,#6
+    JUMP %CMP%,(_not_found)
+        MOV RLI,#0
+
+_innerloop:
+        MOV IDX1,IDX
+        ADD IDX1,RLO
+        MOV IDX2,IDX
+
+        ADD IDX2, RLI
+
+        MOV V1, [IDX1]
+
+        MOV V2,[IDX2]
+            MOV VT, V1
+            ADD VT, V2
+            CMP VT, RSUM
+                JUMP %CMP%,(_found)
+        CMP RLI,#5
+            JUMP %CMP%,(_loopdone)
+        INC RLI
+        JUMP #1,(_innerloop)
+
+_loopdone:
+    INC RLO
+    JUMP #1,(_outerloop)
+
+_main:
+    ARR 1000,1, 2, 3, 4, 5, 6
+    MOV RSUM,19
+    MOV IDX,#1000
+    MOVS RE,%endl%
+    MOVS R3,start:
+
+    CALL _outerloop
+    END
+
+_not_found:
+    MOVS R99,No Such Pair
+    RPRINT R99
+    END
+
+_found:
+    MOVS R99,+
+    RPRINT V1
+    RPRINT R99
+    RPRINT V2
+    MOVS R99,=
+    RPRINT R99
+    RPRINT RSUM
+    END
